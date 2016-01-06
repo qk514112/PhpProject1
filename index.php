@@ -12,6 +12,11 @@ and open the template in the editor.
     <body>
         <?php
         /* get images from database;
+         *     connect database server;
+         *         if connected;
+         *             get images;
+         *     close database;   
+         * 
          * display images on screen;
          * scroll images automately;
          */
