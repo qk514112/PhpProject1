@@ -18,23 +18,24 @@ and open the template in the editor.
          *     close database;   
          **/
         //Database
-        $mysql_host = '127.0.0.1';
-        $mysql_username = 'root';
-        $mysql_password = '123456';
-        $mysql_database = 'test';
-//        $result = mysql_connect($mysql_host, $mysql_username, $mysql_password);
-//        if (!$result) {
-//            die(__LINE__ . ' Invalid connect: ' . mysql_error());
-//        }
-//        mysql_select_db($mysql_database) or die("Unable to select database.");
-//        $img_array = mysql_query("select url from t_img");
-            
-//        $connection = new mysqli($mysql_host, $mysql_username, $mysql_password, $mysql_database);
+        $dbms='mysql';
+        $host = '127.0.0.1';
+        $username = 'root';
+        $password = '123456';
+        $database = 'test';
+        $dsn = "$dbms:host=$host;dbname=$database";
         
-//        if ($connection->connect_error) {
-//            die("Connection failed:".$connection->connect_error);
-//        }
-        
+        try {
+            $db = new PDO($dsn, $username, $password);
+            echo "connect succussfully";
+        } catch (Exception $exc) {
+            die("Error!:".$exc->getMessage()."<br/>");
+        }
+
+        $rs=$db->query("SELECT * FROM t_img");
+        $result_arr = $rs->fetchAll();
+        print_r($result_arr);
+
          /** 
          * display images on screen;
          * scroll images automately;
