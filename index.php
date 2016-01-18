@@ -32,16 +32,14 @@ and open the template in the editor.
             die("Error!:".$exc->getMessage()."<br/>");
         }
 
-//        $rs = $db->query("SELECT url FROM t_img WHERE id=0");
-//        $result_arr = $rs->fetchAll();
-//        print_r($result_arr);
-
         $rs = $db->query("SELECT url FROM t_img");
-        $col = $rs->fetchColumn();
-        echo "<IMG src= $col>" . "<br/>"
+        
+        // display images on screen;
+        while ( $col = $rs->fetchColumn() ) {
+            echo "<IMG src= $col>" . "<br/>";
+        }
          
          /** 
-         * display images on screen;
          * scroll images automately;
          */
         ?>
